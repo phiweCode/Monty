@@ -1,25 +1,29 @@
 #include "monty.h"
 #define LIMIT 100
 
-stack_t *push_stack(stack_t **stack, int data)
+void push(stack_t **stack, unsigned int data)
 {
     stack_t *new_stack = malloc(sizeof(stack_t));
     stack_t *temp_stack = malloc(sizeof(stack_t));
 
     if (new_stack == NULL)
     {
-    return (NULL);
+    printf("new stack is null \n");
     }
-
+    else
+    {
     new_stack->n = data;
     new_stack->next = NULL;
     new_stack->prev = NULL;
+    }
 
     if (*stack == NULL)
     {
     *stack = new_stack;
-    return (new_stack);
+    printf("new_stack \n");
     }
+    else
+    {
 
     temp_stack = *stack;
 
@@ -31,16 +35,16 @@ stack_t *push_stack(stack_t **stack, int data)
     temp_stack->next = new_stack;
     new_stack->next = NULL;
 
-    return new_stack;
+    }
 }
 
-void display_stack(stack_t **stack)
+void pall(stack_t **stack, unsigned int line_number)
 {
 
 stack_t *temp = malloc(sizeof(stack_t));
 int contents[LIMIT];
-int idx;
-int i;
+long unsigned int idx;
+int i = line_number;
 idx = 0;
 
 
@@ -63,7 +67,7 @@ contents[idx] = temp->n;
 
 for (i = idx ; i >= 0; i--)
 {
-printf("[%d]\n", contents[i]);
+printf("%d\n", contents[i]);
 }
 
 }
@@ -78,7 +82,7 @@ printf("[%d]\n", contents[i]);
 
 instruction_t instruction_set[] =
 {
- {"push", push_stack},
- {"pall", display_stack}
+ {"push", push},
+ {"pall", pall}
 };
 

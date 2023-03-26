@@ -5,6 +5,7 @@
 #include <stddef.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -37,6 +38,8 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+instruction_t instruction_set[2];
+
 /**
  * push_stack- pushes an element into a stack
  * @stack: pointer to the stack;
@@ -44,14 +47,14 @@ typedef struct instruction_s
  * Return: address of the pushed element
 */
 
-stack_t *push_stack(stack_t **, int );
+void push(stack_t **stack, unsigned int line_number);
 
 /**
  * display_stack - displays a stack
  * @stack: pointer to the stack
 */
 
-void display_stack(stack_t **stack);
+void pall(stack_t **stack, unsigned int line_number);
 
 
 #endif
